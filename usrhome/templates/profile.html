@@ -1,0 +1,198 @@
+{% load static %}
+<!-- Add jquery -->
+<script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}"></script>
+
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>AP-MAN</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+    <noscript>
+        <link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
+    <div id="forlogin">
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                <li><a>Hi, {{ user.first_name }}</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {% else %}
+                <script>
+                    window.location = "http://18.216.172.90";
+
+                </script>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <span class="icon fa-gem"></span>
+        </div>
+        <div class="content">
+            <div class="inner">
+                <h1>AP Manager</h1>
+                <p>Click on calender events to see calendar
+                    The payment integration used is PayTM.
+                    Also try net banking option in payment gateway.
+                For other option use these testing details <a href="https://developer.paytm.com/docs/testing-integration">from here</a> </p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#notice">Notifications</a></li>
+                <li><a href="#pastpaid">Past Payments</a></li>
+                <li><a href="#dues">Payment Dues</a></li>
+                <li><a href="/calendar">Calendar Events</a></li>
+                <!--                <li><a href="#elements">Elements</a></li>-->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main">
+
+        <!-- Intro -->
+        <article id="intro">
+            <h2 class="major">Intro</h2>
+            <span class="image main"><img src="{% static 'images/pic01.jpg' %}" alt=""/></span>
+            <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue.
+                Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus
+                nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome
+                    work</a>.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent
+                taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu
+                nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies
+                condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem
+                mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et
+                netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque
+                aliquam maximus risus, vel sed vehicula.</p>
+        </article>
+
+        <!-- Calendar -->
+
+        <!-- Work -->
+        <article id="work">
+            <!--            <h2 class="major">Work</h2>-->
+            <!--            <span class="image main"><img src="{% static 'images/pic02.jpg' %}" alt=""/></span>-->
+            <!--            <p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac.-->
+            <!--                Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin-->
+            <!--                mauris nec lorem luctus ultrices.</p>-->
+            <!--            <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed-->
+            <!--                nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet-->
+            <!--                massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus-->
+            <!--                et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>-->
+        </article>
+
+        <!-- About -->
+        <article id="about">
+            <h2 class="major">About</h2>
+            <span class="image main"><img src="{% static 'images/pic03.jpg' %}" alt=""/></span>
+            <p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend
+                sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam.
+                Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum
+                primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+        </article>
+
+
+        <!-- Notification -->
+        <article id="notice">
+            <h2 class="major">Notifications</h2>
+            <span class="image main"><img src="{% static 'images/pic03.jpg' %}" alt=""/></span>
+            {% if notification.count > 0 %}
+            {% for n in notification %}
+            <p><a href="/message/{{n.id}}">{{n.head}}</a></p>
+            {% endfor %}
+            {% endif %}
+
+
+        </article>
+
+        <!-- Dues -->
+        <article id="dues">
+            <h2 class="major">Payment Dues</h2>
+            <span class="image main"><img src="{% static 'images/pic03.jpg' %}" alt=""/></span>
+            {% if dues.count > 0 %}
+            {% for n in dues %}
+            <p><a href="/dues/{{n.id}}">{{n.head}}</a></p>
+            {% endfor %}
+            {% endif %}
+        </article>
+
+        <!-- Pastpayments -->
+        <article id="pastpaid">
+            <h2 class="major">Past Payment</h2>
+            <span class="image main"><img src="{% static 'images/pic03.jpg' %}" alt=""/></span>
+            {% if pastpay.count > 0 %}
+            {% for n in pastpay %}
+            <p><a href="/payments_done/{{n.id}}">{{n.head}}</a></p>
+            {% endfor %}
+            {% endif %}
+        </article>
+
+        <!-- Contact -->
+        <article id="contact">
+            <h2 class="major">Contact</h2>
+            <form method="post" action="#">
+                <div class="fields">
+                    <div class="field half">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name"/>
+                    </div>
+                    <div class="field half">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email"/>
+                    </div>
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <textarea name="message" id="message" rows="4"></textarea>
+                    </div>
+                </div>
+                <ul class="actions">
+                    <li><input type="submit" value="Send Message" class="primary"/></li>
+                    <li><input type="reset" value="Reset"/></li>
+                </ul>
+            </form>
+            <ul class="icons">
+                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+            </ul>
+        </article>
+
+        <!-- Elements -->
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <p class="copyright">&copy; AP-MAN. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+    </footer>
+
+</div>
+
+<!-- BG -->
+<div id="bg"></div>
+
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/browser.min.js' %}"></script>
+<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+</html>

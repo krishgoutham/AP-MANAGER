@@ -1,0 +1,113 @@
+{% load static %}
+<!-- Add jquery -->
+
+<script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script>
+    textarea {
+    color: #fff;
+    }
+
+</script>
+
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>AP-MAN</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+    <noscript>
+        <link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
+    <div id="forlogin">
+        <nav>
+            <ul>
+                <!--                {% if user.is_authenticated %}-->
+                <li><a href="/profile">Hi, {{ user.first_name }}</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <!--                {% else %}-->
+                <!--                <script>-->
+                <!--                    window.location = "http://127.0.0.1:8000";-->
+                <!--                </script>-->
+                <!--                {% endif %}-->
+            </ul>
+        </nav>
+    </div>
+    <!-- Header -->
+    <header id="header">
+<!--        <nav>-->
+<!--            <ul>-->
+<!--                <li><a class="btn btn-info left" href="{% url 'usrhome:calendar' %}"> Calendar </a></a></li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            {{ field.label }} <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ field.label }} <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <section>
+            <form method="post" action="#">
+                <div class="fields">
+                    <div class="field">
+                        <label for="demo-name">Name</label>
+                        <input type="text" name="demo-name" id="demo-name" value="{{form.title.value}}" readonly/>
+                    </div>
+                    <div class="field ">
+                        <label for="demo-message">Message</label>
+                        <textarea name="demo-message" id="demo-message"
+                                  rows="6" readonly>{{form.description.value}}</textarea>
+                    </div>
+                    <div class="field">
+                        <label for="demo-name">Start Time</label>
+                        <input type="text" name="demo-name" id="demo-name" value="{{form.start_time.value}}" readonly/>
+                    </div>
+                    <div class="field">
+                        <label for="demo-name">End Time</label>
+                        <input type="text" name="demo-name" id="demo-name" value="{{form.end_time.value}}" readonly/>
+                    </div>
+
+                </div>
+            </form>
+                    <a class="btn btn-info left" href="{% url 'usrhome:calendar' %}"> <input type="submit" value="Back to Calendar" class="primary"/></a>
+        </section>
+
+    </header>
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <p class="copyright">&copy; AP-MAN. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+    </footer>
+
+</div>
+
+<!-- BG -->
+<div id="bg"></div>
+
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/browser.min.js' %}"></script>
+<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}">
+    document.getElementsByTagName("textarea")[0].readOnly = "true";
+
+</script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+</html>

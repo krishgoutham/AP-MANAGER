@@ -1,0 +1,69 @@
+{% load static %}
+<!-- Add jquery -->
+<script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}"></script>
+
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>AP-MAN</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+    <noscript>
+        <link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
+    <div id="forlogin">
+        <nav>
+            <ul>
+<!--                {% if user.is_authenticated %}-->
+                <li><a href="/profile">Hi, {{ user.first_name }}</a></li>
+                <li><a href="/logout">Logout</a></li>
+<!--                {% else %}-->
+<!--                <script>-->
+<!--                    window.location = "http://127.0.0.1:8000";-->
+<!--                </script>-->
+<!--                {% endif %}-->
+            </ul>
+        </nav>
+    </div>
+    <!-- Header -->
+    <header id="header">
+        <div class="content">
+            <div class="inner">
+                <h2>{{notification.head}}</h2>
+                <p>{{notification.desc}}</p>
+                <p><a href="delete/{{notification.id}}/">Delete this Msg</a></p>
+
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <p class="copyright">&copy; AP-MAN. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+    </footer>
+
+</div>
+
+<!-- BG -->
+<div id="bg"></div>
+
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/browser.min.js' %}"></script>
+<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+</html>
